@@ -23,7 +23,7 @@ function TextInputForm({handleFormSubmit, handleInputChange,value, inputType='te
             <div className="flex">
                 <Button
                     text="OK"
-                    buttonTypetype="submit"
+                    buttonType="submit"
                 />
             </div>
         </form>
