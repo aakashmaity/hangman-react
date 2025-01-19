@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom"
 import MaskedText from "../../components/MaskedText/MaskedText"
 import LetterButtons from "../../components/LetterButtons/LetterButtons"
 import { useState } from "react";
@@ -6,8 +6,9 @@ import HangMan from "../../components/HangMan/HangMan";
 
 function PlayGame() {
   const [usedLetters, setUsedLetters] = useState([]);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const wordSelected = location.state?.wordSelected;
 
   function handleLetterClick(letter) {
@@ -16,6 +17,11 @@ function PlayGame() {
     } else {
       console.log('Incorrect');
       setStep(step + 1);
+    }
+    
+    if(step >= 7){
+      alert('Game Over');
+      navigate('/start');
     }
     setUsedLetters([...usedLetters, letter]);
   }
